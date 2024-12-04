@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+      body {
+        background-image: linear-gradient(to right, #740938, #fba1b7);
+      }
+      .colour_page {
+        font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        height: 100vh;
+        justify-content: center;
+      }
+      .color_container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background-color: transparent;
+        padding: 2rem;
+      }
+      .copycode {
+        width: 100%;
+      }
+      button {
+        background-color: rgb(221, 61, 88);
+        color: white;
+        padding: 0.4rem 0.9rem;
+        border-radius: 0.4rem;
+        border: none;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div class="colour_page">
+      <div class="color_container">
+        <div class="btn">
+          <button id="btn1">#051937</button>
+          <button id="btn2">#008793</button>
+        </div>
+        <h2>copy your code here</h2>
+        <div class="copycode">
+          background-color: linear-gradient(to right, rgb(92, 145, 229),
+          rgb(152, 63, 198 ))
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let btn1 = document.querySelector("#btn1");
+      let btn2 = document.querySelector("#btn2");
+      let con = document.querySelector(".copycode");
+      let rgb1 = "#fff";
+      let rgb2 = "#fff";
+
+      function makeColour() {
+        let hex = "0123456789abcdef";
+        let made = "#";
+
+        for (let i = 0; i < 6; i++) {
+          let idx = Math.floor(Math.random() * hex.length);
+          made += hex[idx];
+        }
+        return made;
+      }
+
+      const handelBtn1 = () => {
+        rgb1 = makeColour(); // Generate a random color
+        document.body.style.backgroundImage = `linear-gradient(to right, ${rgb1}, ${rgb2}`;
+        con.innerHTML = `linear-gradient(to right, ,${rgb1}, rgb(152, 63, 198 )`;
+        btn1.innerHTML = rgb1;
+      };
+
+      const handelBtn2 = () => {
+        rgb2 = makeColour();
+        console.log(rgb2);
+        btn2.innerHTML = rgb2;
+        document.body.style.backgroundImage = `linear-gradient(to right, ${rgb1}, ${rgb2}`;
+        con.innerHTML = `linear-gradient(to right, ,${rgb1}, ${rgb2}`;
+      };
+
+      btn1.addEventListener("click", handelBtn1);
+      btn2.addEventListener("click", handelBtn2);
+      con.addEventListener("click", () => {
+        navigator.clipboard.writeText(con.innerText);
+        alert("copied...");
+      });
+    </script>
+  </body>
+</html>
